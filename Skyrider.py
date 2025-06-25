@@ -43,6 +43,10 @@ def main():
             st.session_state.colunas_agrupamento = None
             st.success("Dataset carregado com sucesso!")
 
+    if opcao == "Visualizar dataset":
+        if st.session_state.df is not None:
+            st.dataframe(st.session_state.df, height=300)
+
 
 if __name__ == '__main__':
     main()
