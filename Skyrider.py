@@ -69,6 +69,22 @@ def main():
             dict_str = {str(k): v for k, v in list(vendas_dict.items())[:10]}
             st.write(dict_str)
 
+    if opcao == "Buscar quantidade (DataFrame)":
+        if st.session_state.df_agrupado is not None:
+            col1, col2, col3 = st.session_state.colunas_agrupamento
+            valor1 = st.sidebar.selectbox(f"Valor de {col1}:", 
+                                        options=st.session_state.df_agrupado[col1].unique())
+            valor2 = st.sidebar.selectbox(f"Valor de {col2}:", 
+                                        options=st.session_state.df_agrupado[col2].unique())
+            start = time.perf_counter()
+            quantidade = st.session_state.df_agrupado[
+                (st.session_state.df_agrupado[col1] == valor1) & 
+                (st.session_state.df_agrupado[col2] == valor2)
+            ][col3].values
+            tempo = (time.perf_counter() - start) * 1000
+            st.markdown(f"**Quantidade:** para {valor1} e {valor2} : {quantidade}")
+            st.markdown(f"**Tempo:** {tempo:.4f} ms")
+
 
 
 
