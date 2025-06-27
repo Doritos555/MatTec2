@@ -47,6 +47,16 @@ def main():
         if st.session_state.df is not None:
             st.dataframe(st.session_state.df, height=300)
 
+    if opcao == "Agrupar dados":
+        if st.session_state.df is not None:
+            df = st.session_state.df
+            st.subheader("Agrupamento de dados por df")
+            cols = df.columns.tolist()
+            col1 = st.sidebar.selectbox("Atributo 1:", cols, index=1)
+            col2 = st.sidebar.selectbox("Atributo 2:", cols, index=2)
+            col3 = st.sidebar.selectbox("Atributo somador:", cols, index=4)
+
+
 
 if __name__ == '__main__':
     main()
