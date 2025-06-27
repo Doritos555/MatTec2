@@ -85,6 +85,20 @@ def main():
             st.markdown(f"**Quantidade:** para {valor1} e {valor2} : {quantidade}")
             st.markdown(f"**Tempo:** {tempo:.4f} ms")
 
+    elif opcao == "Buscar quantidade (Dict)":
+        vendas_dict = st.session_state.vendas_dict
+        if vendas_dict is not None:
+            col1, col2, col3 = st.session_state.colunas_agrupamento
+            valor1 = st.sidebar.selectbox(f"Valor de {col1}:", 
+                                        options=st.session_state.df_agrupado[col1].unique())
+            valor2 = st.sidebar.selectbox(f"Valor de {col2}:", 
+                                        options=st.session_state.df_agrupado[col2].unique())
+            start = time.perf_counter()
+            quantidade = vendas_dict.get((valor1, valor2), 0)
+            tempo = (time.perf_counter() - start) * 1000
+            st.markdown(f"**Quantidade:** para {valor1} e {valor2} : {quantidade}")
+            st.markdown(f"**Tempo:** {tempo:.4f} s")
+            #st.write(f"Quantidade para {valor1} e {valor2}: {quantidade}")
 
 
 
