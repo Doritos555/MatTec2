@@ -83,7 +83,7 @@ def main():
             ][col3].values
             tempo = (time.perf_counter() - start) * 1000
             st.markdown(f"**Quantidade:** para {valor1} e {valor2} : {quantidade}")
-            st.markdown(f"**Tempo:** {tempo:.4f} ms")
+            st.markdown(f"**Tempo:** {tempo:.4f} s")
 
     if opcao == "Buscar quantidade (Dict)":
         vendas_dict = st.session_state.vendas_dict
